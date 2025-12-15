@@ -27,15 +27,15 @@ const categoryIcons: Record<CategoryType | "all", typeof MessageCircle> = {
   docs: FileText,
 };
 
-const categoryColors: Record<CategoryType | "all", string> = {
-  all: "bg-foreground/10 text-foreground",
-  support: "bg-category-support/10 text-category-support",
-  marketing: "bg-category-marketing/10 text-category-marketing",
-  finance: "bg-category-finance/10 text-category-finance",
-  hr: "bg-category-hr/10 text-category-hr",
-  sales: "bg-category-sales/10 text-category-sales",
-  operations: "bg-category-operations/10 text-category-operations",
-  docs: "bg-category-docs/10 text-category-docs",
+const categoryGradients: Record<CategoryType | "all", string> = {
+  all: "from-foreground/20 to-foreground/10",
+  support: "from-category-support to-cyan-400",
+  marketing: "from-category-marketing to-pink-400",
+  finance: "from-category-finance to-emerald-400",
+  hr: "from-category-hr to-purple-400",
+  sales: "from-category-sales to-amber-400",
+  operations: "from-category-operations to-blue-400",
+  docs: "from-category-docs to-yellow-400",
 };
 
 const CategoryFilter = ({ selectedCategory, onCategoryChange }: CategoryFilterProps) => {
@@ -51,9 +51,9 @@ const CategoryFilter = ({ selectedCategory, onCategoryChange }: CategoryFilterPr
   ];
 
   return (
-    <section id="categorias" className="border-b border-border/50 bg-card/50 backdrop-blur-sm">
-      <div className="container mx-auto px-4 py-4 md:px-6">
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide md:justify-center md:gap-3 md:pb-0">
+    <section id="categorias" className="py-6">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide md:justify-center md:gap-3 md:pb-0 md:flex-wrap">
           {categories.map((category) => {
             const Icon = categoryIcons[category];
             const isSelected = selectedCategory === category;
@@ -63,19 +63,20 @@ const CategoryFilter = ({ selectedCategory, onCategoryChange }: CategoryFilterPr
                 key={category}
                 onClick={() => onCategoryChange(category)}
                 className={cn(
-                  "flex shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all",
+                  "relative flex shrink-0 items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium transition-all",
                   isSelected
-                    ? cn(categoryColors[category], "ring-2 ring-offset-2 ring-offset-background")
-                    : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground glass"
                 )}
-                style={{
-                  ...(isSelected && category !== "all" && {
-                    "--tw-ring-color": `hsl(var(--category-${category}))`,
-                  } as React.CSSProperties)
-                }}
               >
-                <Icon className="h-4 w-4" />
-                <span className="whitespace-nowrap">
+                {isSelected && (
+                  <div className={cn(
+                    "absolute inset-0 rounded-xl bg-gradient-to-r opacity-90",
+                    categoryGradients[category]
+                  )} />
+                )}
+                <Icon className={cn("relative h-4 w-4", isSelected && category !== "all" && "text-background")} />
+                <span className={cn("relative whitespace-nowrap", isSelected && category !== "all" && "text-background")}>
                   {category === "all" ? "Todas" : categoryLabels[category]}
                 </span>
               </button>

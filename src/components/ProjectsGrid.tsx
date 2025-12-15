@@ -1,6 +1,6 @@
 import ProjectCard from "./ProjectCard";
 import { type Project } from "@/data/projects";
-import { Search, Frown } from "lucide-react";
+import { Search, Frown, Sparkles } from "lucide-react";
 
 interface ProjectsGridProps {
   projects: Project[];
@@ -10,20 +10,20 @@ interface ProjectsGridProps {
 const ProjectsGrid = ({ projects, searchQuery }: ProjectsGridProps) => {
   if (projects.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 text-center">
-        <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-muted">
+      <div className="flex flex-col items-center justify-center py-24 text-center">
+        <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-2xl glass">
           {searchQuery ? (
-            <Search className="h-8 w-8 text-muted-foreground" />
+            <Search className="h-10 w-10 text-muted-foreground" />
           ) : (
-            <Frown className="h-8 w-8 text-muted-foreground" />
+            <Frown className="h-10 w-10 text-muted-foreground" />
           )}
         </div>
-        <h3 className="mb-2 font-display text-lg font-semibold text-foreground">
+        <h3 className="mb-3 font-display text-xl font-semibold text-foreground">
           No se encontraron herramientas
         </h3>
-        <p className="max-w-sm text-sm text-muted-foreground">
+        <p className="max-w-md text-sm text-muted-foreground leading-relaxed">
           {searchQuery 
-            ? `No hay resultados para "${searchQuery}". Intenta con otros términos.`
+            ? `No hay resultados para "${searchQuery}". Intenta con otros términos o explora las categorías.`
             : "No hay herramientas en esta categoría por el momento."
           }
         </p>

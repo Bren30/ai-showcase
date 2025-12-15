@@ -2,115 +2,133 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "@fontsource/dm-sans/400.css";
-@import "@fontsource/dm-sans/500.css";
-@import "@fontsource/dm-sans/600.css";
-@import "@fontsource/dm-sans/700.css";
-@import "@fontsource/space-grotesk/500.css";
-@import "@fontsource/space-grotesk/600.css";
-@import "@fontsource/space-grotesk/700.css";
+@import "@fontsource/outfit/400.css";
+@import "@fontsource/outfit/500.css";
+@import "@fontsource/outfit/600.css";
+@import "@fontsource/outfit/700.css";
+@import "@fontsource/plus-jakarta-sans/400.css";
+@import "@fontsource/plus-jakarta-sans/500.css";
+@import "@fontsource/plus-jakarta-sans/600.css";
 
 @layer base {
   :root {
-    --background: 210 30% 98%;
-    --foreground: 220 25% 12%;
+    /* Dark cyberpunk theme as default */
+    --background: 240 15% 6%;
+    --foreground: 210 40% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 220 25% 12%;
+    --card: 240 15% 9%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 25% 12%;
+    --popover: 240 15% 9%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 200 85% 45%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 175 100% 50%;
+    --primary-foreground: 240 15% 6%;
 
-    --secondary: 220 20% 96%;
-    --secondary-foreground: 220 25% 25%;
+    --secondary: 240 15% 14%;
+    --secondary-foreground: 210 40% 90%;
 
-    --muted: 220 15% 94%;
-    --muted-foreground: 220 10% 45%;
+    --muted: 240 15% 14%;
+    --muted-foreground: 215 20% 55%;
 
-    --accent: 165 60% 45%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 295 90% 65%;
+    --accent-foreground: 240 15% 6%;
 
     --destructive: 0 72% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 90%;
-    --input: 220 15% 90%;
-    --ring: 200 85% 45%;
+    --border: 240 15% 18%;
+    --input: 240 15% 18%;
+    --ring: 175 100% 50%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
-    /* Custom colors for categories */
-    --category-support: 200 85% 45%;
-    --category-marketing: 330 75% 55%;
-    --category-finance: 160 65% 40%;
-    --category-hr: 270 60% 55%;
-    --category-sales: 25 90% 55%;
-    --category-operations: 220 70% 50%;
-    --category-docs: 45 85% 50%;
+    /* Neon category colors */
+    --category-support: 175 100% 50%;
+    --category-marketing: 330 100% 65%;
+    --category-finance: 145 80% 50%;
+    --category-hr: 280 100% 70%;
+    --category-sales: 35 100% 55%;
+    --category-operations: 215 100% 60%;
+    --category-docs: 55 100% 55%;
 
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(200 85% 45%) 0%, hsl(165 60% 45%) 100%);
-    --gradient-card-hover: linear-gradient(180deg, hsl(200 85% 98%) 0%, hsl(200 85% 95%) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(210 30% 98%) 0%, hsl(220 20% 96%) 100%);
+    /* Neon glows */
+    --glow-cyan: 0 0 20px hsl(175 100% 50% / 0.5), 0 0 40px hsl(175 100% 50% / 0.3);
+    --glow-magenta: 0 0 20px hsl(295 90% 65% / 0.5), 0 0 40px hsl(295 90% 65% / 0.3);
+    --glow-mixed: 0 0 30px hsl(175 100% 50% / 0.4), 0 0 60px hsl(295 90% 65% / 0.2);
+
+    /* Glassmorphism */
+    --glass-bg: hsl(240 15% 12% / 0.6);
+    --glass-border: hsl(240 15% 25% / 0.5);
 
     /* Shadows */
-    --shadow-card: 0 1px 3px hsl(220 25% 12% / 0.04), 0 4px 12px hsl(220 25% 12% / 0.06);
-    --shadow-card-hover: 0 4px 12px hsl(220 25% 12% / 0.08), 0 8px 24px hsl(220 25% 12% / 0.1);
-    --shadow-button: 0 2px 4px hsl(200 85% 45% / 0.2);
+    --shadow-card: 0 4px 24px hsl(0 0% 0% / 0.4);
+    --shadow-card-hover: 0 8px 32px hsl(0 0% 0% / 0.5), var(--glow-cyan);
+    --shadow-button: 0 4px 16px hsl(175 100% 50% / 0.3);
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 240 15% 8%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 175 100% 50%;
+    --sidebar-primary-foreground: 240 15% 6%;
+    --sidebar-accent: 240 15% 14%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 240 15% 18%;
+    --sidebar-ring: 175 100% 50%;
   }
 
-  .dark {
-    --background: 220 25% 8%;
-    --foreground: 210 20% 95%;
+  .light {
+    --background: 210 40% 98%;
+    --foreground: 240 15% 10%;
 
-    --card: 220 25% 12%;
-    --card-foreground: 210 20% 95%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 15% 10%;
 
-    --popover: 220 25% 12%;
-    --popover-foreground: 210 20% 95%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 15% 10%;
 
-    --primary: 200 85% 55%;
-    --primary-foreground: 220 25% 8%;
+    --primary: 175 85% 40%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 20% 18%;
-    --secondary-foreground: 210 20% 90%;
+    --secondary: 220 15% 95%;
+    --secondary-foreground: 240 15% 20%;
 
-    --muted: 220 20% 18%;
-    --muted-foreground: 220 10% 60%;
+    --muted: 220 15% 93%;
+    --muted-foreground: 215 15% 45%;
 
-    --accent: 165 60% 50%;
-    --accent-foreground: 220 25% 8%;
+    --accent: 295 75% 50%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 72% 55%;
-    --destructive-foreground: 0 0% 100%;
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 175 85% 40%;
 
-    --border: 220 20% 20%;
-    --input: 220 20% 20%;
-    --ring: 200 85% 55%;
+    --category-support: 175 85% 40%;
+    --category-marketing: 330 85% 55%;
+    --category-finance: 145 70% 40%;
+    --category-hr: 280 85% 60%;
+    --category-sales: 35 90% 50%;
+    --category-operations: 215 90% 50%;
+    --category-docs: 55 90% 45%;
 
-    --shadow-card: 0 1px 3px hsl(0 0% 0% / 0.2), 0 4px 12px hsl(0 0% 0% / 0.3);
-    --shadow-card-hover: 0 4px 12px hsl(0 0% 0% / 0.3), 0 8px 24px hsl(0 0% 0% / 0.4);
+    --glow-cyan: 0 0 10px hsl(175 85% 40% / 0.3);
+    --glow-magenta: 0 0 10px hsl(295 75% 50% / 0.3);
+    --glow-mixed: 0 0 15px hsl(175 85% 40% / 0.2);
 
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --glass-bg: hsl(0 0% 100% / 0.8);
+    --glass-border: hsl(220 15% 88% / 0.8);
+
+    --shadow-card: 0 2px 16px hsl(220 15% 20% / 0.08);
+    --shadow-card-hover: 0 8px 32px hsl(220 15% 20% / 0.12);
+    --shadow-button: 0 4px 12px hsl(175 85% 40% / 0.25);
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 240 15% 10%;
+    --sidebar-primary: 175 85% 40%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 220 15% 95%;
+    --sidebar-accent-foreground: 240 15% 10%;
+    --sidebar-border: 220 15% 88%;
+    --sidebar-ring: 175 85% 40%;
   }
 }
 
@@ -121,6 +139,10 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    background-image: 
+      radial-gradient(ellipse 80% 50% at 50% -20%, hsl(175 100% 50% / 0.08), transparent),
+      radial-gradient(ellipse 60% 40% at 100% 100%, hsl(295 90% 65% / 0.06), transparent);
+    background-attachment: fixed;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -131,5 +153,37 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+  }
+
+  .glow-cyan {
+    box-shadow: var(--glow-cyan);
+  }
+
+  .glow-magenta {
+    box-shadow: var(--glow-magenta);
+  }
+
+  .glow-mixed {
+    box-shadow: var(--glow-mixed);
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+  }
+
+  .border-gradient {
+    border-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent))) 1;
+  }
+
+  .neon-line {
+    @apply h-px w-full;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary)), hsl(var(--accent)), transparent);
   }
 }
