@@ -1,72 +1,61 @@
-import { Cpu, Menu, X } from "lucide-react";
+import { Sparkles, Menu, X } from "lucide-react";
 import { useState } from "react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full glass">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
-        <div className="flex items-center gap-3">
-          <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent">
-            <Cpu className="h-5 w-5 text-primary-foreground" />
-            <div className="absolute inset-0 rounded-xl bg-primary/20 blur-lg" />
+    <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-sm border-b border-border">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <div className="flex items-center gap-2">
+            <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+              <Sparkles className="w-5 h-5 text-primary-foreground" />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-display font-bold text-lg text-foreground">
+                AI Hub
+              </span>
+              <span className="text-xs text-muted-foreground -mt-1">
+                Herramientas Inteligentes
+              </span>
+            </div>
           </div>
-          <div className="flex flex-col">
-            <span className="font-display text-lg font-bold tracking-tight text-foreground">
-              AI<span className="text-gradient">Hub</span>
-            </span>
-            <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
-              Intelligence Platform
-            </span>
-          </div>
-        </div>
-        
-        <nav className="hidden items-center gap-8 md:flex">
-          <a 
-            href="#proyectos" 
-            className="relative text-sm font-medium text-muted-foreground transition-colors hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-primary after:transition-all hover:after:w-full"
-          >
-            Explorar
-          </a>
-          <a 
-            href="#categorias" 
-            className="relative text-sm font-medium text-muted-foreground transition-colors hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-primary after:transition-all hover:after:w-full"
-          >
-            Categorías
-          </a>
-          <a 
-            href="#stats" 
-            className="relative text-sm font-medium text-muted-foreground transition-colors hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-primary after:transition-all hover:after:w-full"
-          >
-            Impacto
-          </a>
-        </nav>
 
-        <button 
-          className="md:hidden text-foreground"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
-      </div>
-
-      {/* Mobile menu */}
-      {isMenuOpen && (
-        <div className="md:hidden glass border-t border-border/50">
-          <nav className="container mx-auto flex flex-col gap-4 px-4 py-4">
-            <a href="#proyectos" className="text-sm font-medium text-muted-foreground hover:text-primary">
-              Explorar
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-8">
+            <a href="#proyectos" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+              Proyectos
             </a>
-            <a href="#categorias" className="text-sm font-medium text-muted-foreground hover:text-primary">
+            <a href="#categorias" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               Categorías
             </a>
-            <a href="#stats" className="text-sm font-medium text-muted-foreground hover:text-primary">
-              Impacto
-            </a>
           </nav>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+          >
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
-      )}
+
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <nav className="md:hidden py-4 border-t border-border animate-fade-in">
+            <div className="flex flex-col gap-2">
+              <a href="#proyectos" className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors">
+                Proyectos
+              </a>
+              <a href="#categorias" className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors">
+                Categorías
+              </a>
+            </div>
+          </nav>
+        )}
+      </div>
     </header>
   );
 };

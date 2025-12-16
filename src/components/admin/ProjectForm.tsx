@@ -70,8 +70,8 @@ export const ProjectForm = ({ onSubmit, editingProject, onCancel }: ProjectFormP
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const inputClass = "w-full px-4 py-3 bg-background/50 border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all";
-  const labelClass = "block text-sm font-medium text-foreground/80 mb-2";
+  const inputClass = "w-full px-4 py-3 bg-background border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all";
+  const labelClass = "block text-sm font-medium text-foreground mb-2";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -161,8 +161,8 @@ export const ProjectForm = ({ onSubmit, editingProject, onCancel }: ProjectFormP
                 onClick={() => handleChange("iconName", opt.value)}
                 className={`p-3 rounded-xl border transition-all ${
                   formData.iconName === opt.value
-                    ? "border-primary bg-primary/20 text-primary"
-                    : "border-border bg-background/30 text-muted-foreground hover:border-primary/50"
+                    ? "border-primary bg-primary/10 text-primary"
+                    : "border-border bg-background text-muted-foreground hover:border-primary/50"
                 }`}
                 title={opt.label}
               >
@@ -221,13 +221,13 @@ export const ProjectForm = ({ onSubmit, editingProject, onCancel }: ProjectFormP
         <button
           type="button"
           onClick={onCancel}
-          className="flex-1 px-4 py-3 border border-border rounded-xl text-foreground/80 hover:bg-muted/50 transition-all"
+          className="flex-1 px-4 py-3 border border-border rounded-xl text-foreground hover:bg-muted transition-all"
         >
           Cancelar
         </button>
         <button
           type="submit"
-          className="flex-1 px-4 py-3 bg-primary text-primary-foreground rounded-xl font-semibold hover:bg-primary/90 transition-all shadow-button hover:shadow-glow"
+          className="flex-1 px-4 py-3 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 transition-all shadow-button"
         >
           {editingProject ? "Guardar Cambios" : "Crear Proyecto"}
         </button>

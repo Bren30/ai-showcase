@@ -7,24 +7,14 @@ interface AdminProjectListProps {
   onDelete: (projectId: string) => void;
 }
 
-const categoryGradients: Record<string, string> = {
-  support: "from-category-support/20 to-category-support/5",
-  marketing: "from-category-marketing/20 to-category-marketing/5",
-  finance: "from-category-finance/20 to-category-finance/5",
-  hr: "from-category-hr/20 to-category-hr/5",
-  sales: "from-category-sales/20 to-category-sales/5",
-  operations: "from-category-operations/20 to-category-operations/5",
-  docs: "from-category-docs/20 to-category-docs/5",
-};
-
-const categoryColors: Record<string, string> = {
-  support: "text-category-support",
-  marketing: "text-category-marketing",
-  finance: "text-category-finance",
-  hr: "text-category-hr",
-  sales: "text-category-sales",
-  operations: "text-category-operations",
-  docs: "text-category-docs",
+const categoryColors: Record<string, { bg: string; text: string }> = {
+  support: { bg: "bg-category-support/10", text: "text-category-support" },
+  marketing: { bg: "bg-category-marketing/10", text: "text-category-marketing" },
+  finance: { bg: "bg-category-finance/10", text: "text-category-finance" },
+  hr: { bg: "bg-category-hr/10", text: "text-category-hr" },
+  sales: { bg: "bg-category-sales/10", text: "text-category-sales" },
+  operations: { bg: "bg-category-operations/10", text: "text-category-operations" },
+  docs: { bg: "bg-category-docs/10", text: "text-category-docs" },
 };
 
 export const AdminProjectList = ({ projects, onEdit, onDelete }: AdminProjectListProps) => {
@@ -42,14 +32,15 @@ export const AdminProjectList = ({ projects, onEdit, onDelete }: AdminProjectLis
       <div className="space-y-3">
         {projects.map((project) => {
           const Icon = project.icon;
+          const colors = categoryColors[project.category];
           return (
             <div
               key={project.id}
-              className={`glass rounded-xl p-4 bg-gradient-to-r ${categoryGradients[project.category]} border border-border/50 hover:border-primary/30 transition-all group`}
+              className="bg-card rounded-xl p-4 border border-border hover:border-primary/30 transition-all group shadow-card"
             >
               <div className="flex items-start gap-4">
                 {/* Icon */}
-                <div className={`p-3 rounded-xl bg-background/50 ${categoryColors[project.category]}`}>
+                <div className={`p-3 rounded-xl ${colors.bg} ${colors.text}`}>
                   <Icon className="w-6 h-6" />
                 </div>
 
@@ -59,7 +50,7 @@ export const AdminProjectList = ({ projects, onEdit, onDelete }: AdminProjectLis
                     <span className="text-xs text-muted-foreground font-mono">
                       {project.id}
                     </span>
-                    <span className={`text-xs px-2 py-0.5 rounded-full bg-background/50 ${categoryColors[project.category]}`}>
+                    <span className={`text-xs px-2 py-0.5 rounded-full ${colors.bg} ${colors.text}`}>
                       {categoryLabels[project.category]}
                     </span>
                   </div>
@@ -81,7 +72,7 @@ export const AdminProjectList = ({ projects, onEdit, onDelete }: AdminProjectLis
                       href={project.accessUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 rounded-lg bg-background/50 text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
+                      className="p-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
                       title="Ver proyecto"
                     >
                       <ExternalLink className="w-4 h-4" />
@@ -92,7 +83,7 @@ export const AdminProjectList = ({ projects, onEdit, onDelete }: AdminProjectLis
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 rounded-lg bg-background/50 text-muted-foreground hover:text-foreground hover:bg-muted transition-all"
+                      className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-all"
                       title="GitHub"
                     >
                       <Github className="w-4 h-4" />
@@ -100,7 +91,7 @@ export const AdminProjectList = ({ projects, onEdit, onDelete }: AdminProjectLis
                   )}
                   <button
                     onClick={() => onEdit(project)}
-                    className="p-2 rounded-lg bg-background/50 text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
+                    className="p-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
                     title="Editar"
                   >
                     <Edit2 className="w-4 h-4" />
@@ -111,7 +102,7 @@ export const AdminProjectList = ({ projects, onEdit, onDelete }: AdminProjectLis
                         onDelete(project.id);
                       }
                     }}
-                    className="p-2 rounded-lg bg-background/50 text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-all"
+                    className="p-2 rounded-lg text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-all"
                     title="Eliminar"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -124,7 +115,7 @@ export const AdminProjectList = ({ projects, onEdit, onDelete }: AdminProjectLis
       </div>
 
       {projects.length === 0 && (
-        <div className="glass rounded-2xl p-12 text-center">
+        <div className="bg-card rounded-2xl p-12 text-center border border-border">
           <p className="text-muted-foreground">
             No hay proyectos registrados. Crea el primero.
           </p>

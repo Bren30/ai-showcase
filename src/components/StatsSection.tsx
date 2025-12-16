@@ -5,52 +5,53 @@ const stats = [
     icon: Zap,
     value: "12",
     label: "Herramientas Activas",
-    gradient: "from-primary to-cyan-400",
+    color: "bg-category-support/10 text-category-support",
   },
   {
     icon: Users,
     value: "7",
     label: "Áreas Beneficiadas",
-    gradient: "from-accent to-pink-400",
+    color: "bg-category-hr/10 text-category-hr",
   },
   {
     icon: Clock,
     value: "+500h",
     label: "Horas Ahorradas/Mes",
-    gradient: "from-category-finance to-emerald-400",
+    color: "bg-category-finance/10 text-category-finance",
   },
   {
     icon: TrendingUp,
     value: "98%",
-    label: "Satisfacción",
-    gradient: "from-category-sales to-amber-400",
+    label: "Satisfacción de Usuarios",
+    color: "bg-category-sales/10 text-category-sales",
   },
 ];
 
 const StatsSection = () => {
   return (
-    <section id="stats" className="relative py-16">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background" />
-      
-      <div className="container relative mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-8">
-          {stats.map((stat, index) => (
-            <div 
-              key={stat.label}
-              className="group relative flex flex-col items-center text-center p-6 rounded-2xl glass opacity-0 animate-fade-in transition-all hover:scale-105"
-              style={{ animationDelay: `${500 + index * 100}ms` }}
-            >
-              <div className={`mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${stat.gradient} transition-transform group-hover:scale-110`}>
-                <stat.icon className="h-7 w-7 text-background" />
+    <section className="py-12 bg-background">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {stats.map((stat, index) => {
+            const Icon = stat.icon;
+            return (
+              <div
+                key={stat.label}
+                className="stats-card animate-fade-in"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className={`w-12 h-12 rounded-xl ${stat.color} flex items-center justify-center mb-3`}>
+                  <Icon className="w-6 h-6" />
+                </div>
+                <span className="text-3xl font-display font-bold text-foreground">
+                  {stat.value}
+                </span>
+                <span className="text-sm text-muted-foreground text-center mt-1">
+                  {stat.label}
+                </span>
               </div>
-              <span className="font-display text-3xl font-bold text-foreground md:text-4xl">
-                {stat.value}
-              </span>
-              <span className="mt-1 text-sm text-muted-foreground">
-                {stat.label}
-              </span>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

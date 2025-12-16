@@ -100,67 +100,51 @@ const Admin = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Background effects */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-accent/20 rounded-full blur-3xl" />
-        <div 
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: `linear-gradient(hsl(var(--primary) / 0.1) 1px, transparent 1px),
-                              linear-gradient(90deg, hsl(var(--primary) / 0.1) 1px, transparent 1px)`,
-            backgroundSize: '50px 50px'
-          }}
-        />
-      </div>
-
-      <div className="relative z-10">
-        <AdminHeader onNewProject={handleNewProject} />
-        
-        <main className="container mx-auto px-4 py-8">
-          <div className="grid lg:grid-cols-3 gap-8">
-            {/* Form Section */}
-            <div className="lg:col-span-1">
-              <div className={`glass rounded-2xl p-6 sticky top-24 transition-all duration-300 ${isFormOpen ? 'ring-2 ring-primary/50' : ''}`}>
-                <h2 className="text-xl font-display font-bold text-gradient mb-6">
-                  {editingProject ? "Editar Proyecto" : "Nuevo Proyecto"}
-                </h2>
-                {isFormOpen ? (
-                  <ProjectForm 
-                    onSubmit={handleCreateProject}
-                    editingProject={editingProject}
-                    onCancel={() => {
-                      setIsFormOpen(false);
-                      setEditingProject(null);
-                    }}
-                  />
-                ) : (
-                  <div className="text-center py-12">
-                    <p className="text-muted-foreground mb-4">
-                      Haz clic en "Nuevo Proyecto" para agregar una herramienta al catálogo
-                    </p>
-                    <button
-                      onClick={handleNewProject}
-                      className="px-6 py-3 bg-primary text-primary-foreground rounded-xl font-semibold hover:bg-primary/90 transition-all shadow-button hover:shadow-glow"
-                    >
-                      Crear Proyecto
-                    </button>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* Projects List Section */}
-            <div className="lg:col-span-2">
-              <AdminProjectList 
-                projects={projectsList}
-                onEdit={handleEdit}
-                onDelete={handleDelete}
-              />
+      <AdminHeader onNewProject={handleNewProject} />
+      
+      <main className="container mx-auto px-4 py-8">
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* Form Section */}
+          <div className="lg:col-span-1">
+            <div className={`bg-card rounded-2xl p-6 sticky top-24 border border-border shadow-card transition-all duration-300 ${isFormOpen ? 'ring-2 ring-primary/50' : ''}`}>
+              <h2 className="text-xl font-display font-bold text-primary mb-6">
+                {editingProject ? "Editar Proyecto" : "Nuevo Proyecto"}
+              </h2>
+              {isFormOpen ? (
+                <ProjectForm 
+                  onSubmit={handleCreateProject}
+                  editingProject={editingProject}
+                  onCancel={() => {
+                    setIsFormOpen(false);
+                    setEditingProject(null);
+                  }}
+                />
+              ) : (
+                <div className="text-center py-12">
+                  <p className="text-muted-foreground mb-4">
+                    Haz clic en "Nuevo Proyecto" para agregar una herramienta al catálogo
+                  </p>
+                  <button
+                    onClick={handleNewProject}
+                    className="px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 transition-all shadow-button"
+                  >
+                    Crear Proyecto
+                  </button>
+                </div>
+              )}
             </div>
           </div>
-        </main>
-      </div>
+
+          {/* Projects List Section */}
+          <div className="lg:col-span-2">
+            <AdminProjectList 
+              projects={projectsList}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+            />
+          </div>
+        </div>
+      </main>
     </div>
   );
 };
