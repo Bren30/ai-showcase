@@ -1,44 +1,22 @@
-import { Cpu, Heart, Github, Linkedin, Twitter } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="relative mt-20 border-t border-border/50">
-      {/* Top gradient line */}
-      <div className="absolute top-0 left-0 right-0 neon-line opacity-30" />
-      
-      <div className="container mx-auto px-4 py-12 md:px-6">
-        <div className="flex flex-col items-center gap-8">
-          {/* Logo */}
-          <div className="flex items-center gap-3">
-            <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent">
-              <Cpu className="h-5 w-5 text-primary-foreground" />
+    <footer className="bg-card border-t border-border py-8">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+              <Sparkles className="w-4 h-4 text-primary-foreground" />
             </div>
-            <span className="font-display text-lg font-bold tracking-tight text-foreground">
-              AI<span className="text-gradient">Hub</span>
-            </span>
+            <span className="font-display font-bold text-foreground">AI Hub</span>
           </div>
-          
-          {/* Social links */}
+          <p className="text-sm text-muted-foreground text-center">
+            © {new Date().getFullYear()} Equipo de IA. Herramientas internas para toda la empresa.
+          </p>
           <div className="flex items-center gap-4">
-            {[Github, Linkedin, Twitter].map((Icon, i) => (
-              <a 
-                key={i}
-                href="#" 
-                className="flex h-10 w-10 items-center justify-center rounded-xl glass text-muted-foreground transition-all hover:text-primary hover:scale-110"
-              >
-                <Icon className="h-5 w-5" />
-              </a>
-            ))}
-          </div>
-          
-          {/* Credits */}
-          <div className="flex flex-col items-center gap-2 text-center">
-            <p className="flex items-center gap-2 text-sm text-muted-foreground">
-              Creado con <Heart className="h-4 w-4 fill-accent text-accent animate-pulse" /> por el equipo de IA
-            </p>
-            <p className="text-xs text-muted-foreground/60">
-              © {new Date().getFullYear()} Empresa. Todos los derechos reservados.
-            </p>
+            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Soporte</a>
+            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Documentación</a>
           </div>
         </div>
       </div>
